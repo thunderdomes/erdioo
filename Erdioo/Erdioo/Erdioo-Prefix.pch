@@ -18,4 +18,5 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AudioStreamer.h"
 #import "UIViewController+JASidePanel.h"
+#import "CoreData+MagicalRecord.h"
 #endif

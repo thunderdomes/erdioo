@@ -148,6 +148,7 @@
 		cell.placeHolder.text=@"";
 	}
 	[cell.Logo setImageWithURL:[NSURL URLWithString:object_draw.Logo]placeholderImage:[UIImage imageNamed:@"placeholder"]];
+	cell.location_text.text=object_draw.Lokasi;
 	cell.selectionStyle=UITableViewCellSelectionStyleNone;
 	
     return cell;

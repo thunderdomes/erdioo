@@ -14,6 +14,7 @@
 @synthesize Genre=_Genre;
 @synthesize twitter=_twitter;
 @synthesize Logo=_Logo;
+@synthesize Lokasi=_Lokasi;
 -(id)initWithDictionary:(NSDictionary *)dictionary{
 	self=[super init];
 	if(self){
@@ -21,13 +22,9 @@
 		self.NamaRadio=[dictionary objectForKey:@"NamaRadio"];
 		self.Genre=[dictionary objectForKey:@"Genre"];
 		self.twitter=[dictionary objectForKey:@"twitter"];
-	/*	if(![dictionary objectForKey:@"Logo"]){
-			self.Logo=@"placeholder";
-		}
-		else{
-	 */
+		self.Lokasi=[dictionary objectForKey:@"Lokasi"];
 		self.Logo=[dictionary objectForKey:@"Logo"];
-		/*}*/
+	
 				
 	}
 	return self;

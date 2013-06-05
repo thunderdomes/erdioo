@@ -14,6 +14,7 @@
 @property(nonatomic,strong) NSString *Genre;
 @property(nonatomic,strong) NSString *Logo;
 @property(nonatomic,strong) NSString *twitter;
+@property(nonatomic,strong) NSString *Lokasi;
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 @end

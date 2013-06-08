@@ -34,12 +34,12 @@
 		[self.view addSubview:leftMenu];
 		
 		menuLeft=[[NSMutableArray alloc]init];
-		[menuLeft addObject:@"Top Erdioo"];
-		[menuLeft addObject:@"My Erdioo"];
-		[menuLeft addObject:@"Regional Erdioo"];
-		[menuLeft addObject:@"Group Erdioo"];
-		[menuLeft addObject:@"Berita"];
-		[menuLeft addObject:@"Tentang Erdioo"];
+		[menuLeft addObject:@"Top Radio"];
+		[menuLeft addObject:@"Favorite"];
+		[menuLeft addObject:@"Regional Radio"];
+		[menuLeft addObject:@"Radio Group"];
+		[menuLeft addObject:@"News"];
+		[menuLeft addObject:@"About Erdioo"];
     }
     return self;
 }

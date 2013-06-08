@@ -18,6 +18,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		indexpath_now=-1;
 		searchWindow=[[search alloc]init];
 		self.view.backgroundColor=lightGray;
 		self.title=AppName;
@@ -28,8 +29,25 @@
 		erdiooCenter_table.dataSource=self;
 		[erdiooCenter_table setSeparatorColor:[UIColor colorWithRed:0.875 green:0.875 blue:0.875 alpha:1]];
 		erdiooCenter_table.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
+		erdiooCenter_table.hidden=YES;
 		//[erdiooCenter_table setSeparatorColor:[UIColor clearColor]];
-		erdiooCenter_table.backgroundColor=[UIColor clearColor];
+
+		spinner = [[TJSpinner alloc] initWithSpinnerType:kTJSpinnerTypeActivityIndicator];
+        spinner.hidesWhenStopped = YES;
+        [spinner setColor:[UIColor colorWithRed:0.769 green:0.416 blue:0.31 alpha:1]];
+        [spinner setInnerRadius:10];
+        [spinner setOuterRadius:20];
+        [spinner setStrokeWidth:8];
+		[spinner setCenter:CGPointMake(160.0,180.0)];
+        [spinner setNumberOfStrokes:8];
+        [spinner setPatternLineCap:kCGLineCapButt];
+		//        [spinner setSegmentImage:[UIImage imageNamed:@"Stick.jpeg"]];
+        [spinner setPatternStyle:TJActivityIndicatorPatternStyleBox];
+		
+		
+		[self.view addSubview:spinner];
+
+		
 		
 		[self.view addSubview:erdiooCenter_table];
 		
@@ -84,6 +102,7 @@
 	
 }
 -(void)fetchData{
+	[spinner startAnimating];
 	[erdio removeAllObjects];
 	NSString * sURL = [NSString stringWithFormat:@"%@?do=mostviewed&key=%@",Global_url,API_key];
 	NSLog(@"sURL--->%@",sURL);
@@ -103,8 +122,9 @@
 			
 			[topView release];
 		}
-		
+		[spinner stopAnimating];
 		[erdiooCenter_table reloadData];
+		[erdiooCenter_table setHidden:NO];
 	}failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		if(error){
 		}
@@ -139,9 +159,10 @@
 	}
 	
 	cell.RadioName.text = object_draw.NamaRadio;
+	cell.snapped.tag=indexPath.row;
+	[cell.snapped addTarget:self action:@selector(snapped:) forControlEvents:UIControlEventTouchUpInside];
 	
 	cell.Genre.text = object_draw.Genre;
-	cell.placeHolder.hidden=YES;
 	[cell.Logo setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.erdioo.com/icon/?id=%@",object_draw.IdRadio]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
 	cell.location_text.text=object_draw.Lokasi;
 	cell.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -149,13 +170,40 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return  79;
+	
+	CGFloat cellHeight = 79;
+	if (indexpath_now==indexPath.row) {
+		cellHeight = 130;
+	}
+	return cellHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	topViewObject  *object_draw=[erdio objectAtIndex:indexPath.row];
 	//[self stream:[NSString stringWithFormat:@"%@",[object_draw.IdRadio]];
 	[self stream:object_draw.IdRadio];
+	
+}
+-(void)snapped:(id)sender{
+	
+	UIButton* button = (UIButton*)sender;
+	//UIButton* button2 = (UIButton*)indexpath_now;
+ 
+	if(indexpath_now==[sender tag]){
+		indexpath_now=-1;
+		button.selected = !button.selected;
+		//button2.selected=!button2.selected;
+		[erdiooCenter_table beginUpdates];
+		[erdiooCenter_table endUpdates];
+	
+	}
+	else{
+		indexpath_now=[sender tag];
+		   button.selected = !button.selected;
+		//button2.selected=!button2.selected;
+		[erdiooCenter_table beginUpdates];
+		[erdiooCenter_table endUpdates];
+	}
 	
 }
 -(void)stream:(NSString*)radioNumber{

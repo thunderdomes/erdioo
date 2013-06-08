@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Erdioo/AppDelegate.m"
-         timestampString = "392305940.229512"
+         timestampString = "392316749.957431"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
          landmarkName = "-setCenter:"
          landmarkType = "5">
       </FileBreakpoint>

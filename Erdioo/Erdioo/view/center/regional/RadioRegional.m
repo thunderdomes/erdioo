@@ -105,7 +105,6 @@
 	cell.RadioName.text = object_draw.NamaRadio;
 	
 	cell.Genre.text = object_draw.Genre;
-	cell.placeHolder.hidden=YES;
 	[cell.Logo setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.erdioo.com/icon/?id=%@",object_draw.IdRadio]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
 	cell.location_text.text=object_draw.Lokasi;
 	cell.selectionStyle=UITableViewCellSelectionStyleNone;

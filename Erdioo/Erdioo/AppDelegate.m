@@ -42,8 +42,6 @@
     return YES;
 }
 -(void)setCenter:(NSNotification *)name{
-	
-	NSLog(@"name---->%@",name);
 	NSMutableArray *dict = (NSMutableArray*)name.object;
 	if(name==nil){
 		self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[erdiooCenter alloc] init]];

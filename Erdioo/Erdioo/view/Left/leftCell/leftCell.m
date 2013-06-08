@@ -19,7 +19,7 @@
 		
 		self.label=[[UILabel alloc]initWithFrame:CGRectMake(40, 2, 300, 40)];
 		self.label.font=global_font_bold;
-		self.label.textColor=[UIColor whiteColor];
+		self.label.textColor=[UIColor lightGrayColor];
 		self.label.backgroundColor=[UIColor clearColor];
 		
 		self.icon=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
@@ -32,6 +32,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+	self.label.textColor=[UIColor whiteColor];
 
     // Configure the view for the selected state
 }
